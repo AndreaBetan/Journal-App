@@ -1,18 +1,35 @@
+import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from '@mui/material';
 import { JournalLayout } from '../layout/JournalLayout.jsx';
-import { NothingSelectedView, NoteView } from '../views';
+import { NoteView, NothingSelectedView } from '../views';
 import { AddOutlined } from '@mui/icons-material';
+import { starNewNote } from "../../store/jounal/thunks.js";
 
 export const JournalPage = () => {
+  
+  const dispatch = useDispatch();
+
+  const onClickNewNote = () => {
+    dispatch(starNewNote())
+  }
+
+  // Desestructuo isSavign para desahbilitar el boton de crear nota cuando se esta guardadno una
+  const { isSaving, active } = useSelector( state => state.journal);
+  
   return (
-    // Para traer el diseño establecidodo en JournalLayout
+      // Para traer el diseño establecidodo en JournalLayout
     <JournalLayout>
-      {/* NothingSelectedView: Cuando no hay nada seleccionado muestro este componente */}
-      <NothingSelectedView/>
-      {/* <NoteView/> */}
+
+      { active ? 
+        ( <NoteView/>) :
+        // NothingSelectedView: Cuando no hay nada seleccionado muestro este componente
+        (<NothingSelectedView/>)
+      }
 
       <IconButton
+        onClick={onClickNewNote}
         size='large'
+        disabled={ isSaving }
         sx={{
           color: 'white',
           backgroundColor: 'error.main',
