@@ -7,6 +7,10 @@ import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks/useForm';
 import { checkingAuthentication, startGoogleSingIn, startLoginWithEmailPassword } from '../../store/auth';
 
+const formData = {
+  'email': '',
+  'password': ''
+}
 
 export const LoginPage = () => {
 
@@ -16,10 +20,7 @@ export const LoginPage = () => {
   // useDispatch proporciona acceso al despachador de acciones Redux.
   const dispatch = useDispatch();
 
-  const { email, password, onInputChange } = useForm({
-    'email': 'andre@gmail.com',
-    'password': 123
-  })
+  const { email, password, onInputChange } = useForm(formData)
 
   //Memorizar el valor de isAuthenticating, que se calcula basándose en el estado status. Si status es 'checking', isAuthenticating será true; de lo contrario, será false.
   const isAuthenticating = useMemo(() => status === 'checking', [status]);
@@ -27,7 +28,6 @@ export const LoginPage = () => {
   //onSubmit se llama cuando se envía el formulario de inicio de sesión. Dispara la acción checkingAuthentication cuando se hace clic en el botón de inicio de sesión.
   const onSubmit = (e) => {
     e.preventDefault();
-
     dispatch(startLoginWithEmailPassword({ email, password }));
   }
 
@@ -103,7 +103,6 @@ export const LoginPage = () => {
               </Button>
             </Grid>
           </Grid>
-
 
           <Grid container direction='row' justifyContent='end'>
             {/* El componente es el del Router que estoy usando */}

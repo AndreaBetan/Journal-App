@@ -11,6 +11,11 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
     useEffect(() => {
         createValidators();
     }, [ formState ])
+
+    // Cuando el initialForm cambia, se desencadene este efecto
+    useEffect(() => {
+        setFormState(initialForm)
+    }, [ initialForm ])
     
     // isFormValid es una variable de estado computada que indica si el formulario es válido. 
         // Utiliza la función useMemo para memorizar el valor que retorna la fx. 

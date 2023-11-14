@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { IconButton } from '@mui/material';
+import { AddOutlined } from '@mui/icons-material';
 import { JournalLayout } from '../layout/JournalLayout.jsx';
 import { NoteView, NothingSelectedView } from '../views';
-import { AddOutlined } from '@mui/icons-material';
 import { starNewNote } from "../../store/jounal/thunks.js";
 
 export const JournalPage = () => {
@@ -22,7 +22,7 @@ export const JournalPage = () => {
 
       { active ? 
         ( <NoteView/>) :
-        // NothingSelectedView: Cuando no hay nada seleccionado muestro este componente
+        //Cuando no hay nada seleccionado muestro este componente
         (<NothingSelectedView/>)
       }
 
