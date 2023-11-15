@@ -5,7 +5,7 @@ export const journalSlice = createSlice({
     initialState: {
         // Para ver si estoy guardando la nota
         isSaving: false,
-        messageSave: '',
+        messageSaved: '',
         notes: [],
         active: null
         // ASI ES COMO VA A LUCIR UNA NOTA ACTIVA:
@@ -29,6 +29,7 @@ export const journalSlice = createSlice({
         //Elegir la nota activa
         setActiveNote: (state, action) => {
             state.active = action.payload;
+            state.messageSaved = ''
         },
         // Cargal las notas
         setNotes: (state, action) => {
@@ -37,6 +38,7 @@ export const journalSlice = createSlice({
         //Cuando se esta Grabando las notas
         setSavingNote: (state) => {
             state.isSaving = true;
+            state.messageSaved = ''
 
         },
         // Actualizar una nota
@@ -49,7 +51,13 @@ export const journalSlice = createSlice({
                     return action.payload
                 }
                 return note;
-            });     
+            });
+            state.messageSaved = `${ action.payload.title }, actualizada correctamente`    
+        },
+
+        setPhotosToActiveNote: (state, action) => {
+            state.active.imageUrls = [ ...state.active.imageUrls, ...action.payload ];
+            state.isSaving = false;
         },
         // Eliminar nota
         deleteNoteById: (state, action) => {
@@ -68,5 +76,6 @@ export const {
     setSavingNote,
     updateNote,
     deleteNoteById,
-    savingNewNote
+    savingNewNote,
+    setPhotosToActiveNote
 } = journalSlice.actions;

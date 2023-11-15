@@ -1,7 +1,7 @@
 import { collection, doc, setDoc } from "firebase/firestore/lite";
 import { FirebaseDB } from "../../firebase/config";
-import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setSavingNote, updateNote } from "./";
-import { loadNotes } from "../../helpers";
+import { addNewEmptyNote, savingNewNote, setActiveNote, setNotes, setPhotosToActiveNote, setSavingNote, updateNote } from "./";
+import { fileUpload, loadNotes } from "../../helpers";
 
 export const starNewNote = () => {
 
@@ -68,8 +68,26 @@ export const startSaveNote = () => {
     await setDoc( docRef, noteToFireStore, { merge: true });
     // Actualizar la nota
     dispatch( updateNote( note ) );
+  }
+}
 
-    console.log(noteToFireStore)
+export const startUploadingFiles = ( files = [] ) => {
+  return async( dispatch ) => {
+      dispatch( setSavingNote() );
+      
+      // Asi cargaria solo una imagen:
+        // await fileUpload( files[0] );
 
+      // Para realizar carga de miltiples imagenes
+      const fileUploadPromises = [];
+      // Creo un arreglo de promesas
+      for ( const file of files ) {
+           fileUploadPromises.push( fileUpload( file ) )
+      }
+
+      const photosUrls = await Promise.all( fileUploadPromises );
+      
+      dispatch( setPhotosToActiveNote( photosUrls ));
+      
   }
 }
