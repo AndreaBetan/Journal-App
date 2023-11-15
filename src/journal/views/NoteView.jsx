@@ -10,6 +10,7 @@ import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import { useRef } from 'react';
+import { current } from '@reduxjs/toolkit';
 
 
 export const NoteView = () => {
@@ -20,7 +21,7 @@ export const NoteView = () => {
 
     const dateString = useMemo(() => {
         const newDate = new Date(date)
-        return newDate.toUTCString();
+        return newDate.toDateString();
     })
 
     const fileInputRef = useRef();
@@ -76,7 +77,7 @@ export const NoteView = () => {
                 />
 
                 <IconButton
-                    color="secondary"
+                    color="error"
                     disabled={ isSaving }
                     // Con esta fx simulo que estoy seleccionando las imagenes con un click
                     onClick={() => fileInputRef.current.click()}
@@ -85,7 +86,7 @@ export const NoteView = () => {
                 </IconButton>
 
                 <Button
-                    color="secondary"
+                    color="error"
                     sx={{ padding: 2 }}
                     onClick={onSaveNote}
                     disabled={isSaving}

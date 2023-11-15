@@ -1,21 +1,21 @@
-import { ImageListItem, ImageList } from '@mui/material';
+import { ImageList, ImageListItem } from "@mui/material"
 
 
-export const ImageGallery = ({ images }) => {
+export const ImageGallery = ({images}) => {
+    return (
 
-  return (
-    <ImageList sx={{ width: '100%', height: 500 }} cols={4} rowHeight={200}>
-      { images.map((image) => (
-        <ImageListItem key={image}>
-          <img
-            src={`${image}?w=164&h=164&fit=crop&auto=format`}
-            srcSet={`${image}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-            alt="Imagen de la nota"
-            loading="lazy"
-          />
-        </ImageListItem>
-      ))}
-    </ImageList>
-  );
+        <ImageList sx={{ width: '100%', height: 300 }} variant="woven" cols={3} gap={8}>
+            {images.map((image) => (
+                <ImageListItem key={image}>
+                    <img
+                        srcSet={`${image}?w=161&fit=crop&auto=format&dpr=2 2x`}
+                        src={`${image}?w=161&fit=crop&auto=format`}
+                        alt='Imagen de la nota'
+                        loading="lazy"
+                    />
+                </ImageListItem>
+            ))}
+        </ImageList>
+    );
 }
 
