@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { SaveOutlined, UploadOutlined } from '@mui/icons-material';
+import { DeleteOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 import { Button, Grid, IconButton, TextField, Typography } from '@mui/material';
 
-import { ImageGalery } from '../components';
+import { ImageGallery } from '../components';
 import { useForm } from '../../hooks/useForm';
-import { setActiveNote, startSaveNote, startUploadingFiles } from '../../store/jounal';
+import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } from '../../store/jounal';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import { useRef } from 'react';
@@ -47,6 +47,10 @@ export const NoteView = () => {
 
     const onSaveNote = () => {
         dispatch(startSaveNote());
+    }
+
+    const onDelete = () => {
+        dispatch( startDeletingNote() );
     }
 
     return (
@@ -117,9 +121,19 @@ export const NoteView = () => {
                 />
             </Grid>
 
-            {/* Galetia de imagenes */}
+            <Grid container justifyContent='end'>
+                <Button
+                    onClick={ onDelete }
+                    sx={{ mt: 2 }}
+                    color="error"
+                >
+                    <DeleteOutline />
+                    Borrar
+                </Button>
+            </Grid>
 
-            <ImageGalery images={ note.imageUrls } />
+            {/* Galetia de imagenes */}
+            <ImageGallery images={ note.imageUrls } />
 
         </Grid>
     )
