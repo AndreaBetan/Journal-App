@@ -10,7 +10,6 @@ import { setActiveNote, startDeletingNote, startSaveNote, startUploadingFiles } 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
 import { useRef } from 'react';
-import { current } from '@reduxjs/toolkit';
 
 
 export const NoteView = () => {
@@ -58,11 +57,11 @@ export const NoteView = () => {
         <Grid
             container direction="row"
             justifyContent='space-between'
-            sx={{ mb: 1 }}
+            sx={{ m: 1, backgroundColor: 'primary.main' }}
             className='animate__animated animate__fadeIn animate__faster'
         >
             <Grid item>
-                <Typography fontSize={39} fontWeight='light'>{dateString}</Typography>
+                <Typography sx={{ m: 2}} fontWeight='light' variant="h4">Date: {dateString}</Typography>
             </Grid>
 
             <Grid item>
@@ -90,6 +89,7 @@ export const NoteView = () => {
                     sx={{ padding: 2 }}
                     onClick={onSaveNote}
                     disabled={isSaving}
+                    
                 >
                     <SaveOutlined sx={{ fontSize: 30, mr: 1 }} />
                     Save
@@ -99,11 +99,12 @@ export const NoteView = () => {
             <Grid container>
                 <TextField
                     type="text"
-                    variant="filled"
+                    variant="outlined"
+                    color="error"
                     fullWidth
                     placeholder="Write a title"
                     label="Title"
-                    sx={{ border: 'none', mb: 1 }}
+                    sx={{ m: 2 }}
                     name='title'
                     value={title}
                     onChange={onInputChange}
@@ -111,7 +112,9 @@ export const NoteView = () => {
 
                 <TextField
                     type="text"
-                    variant="filled"
+                    variant="outlined"
+                    color="error"
+                    sx={{ m: 2 }}
                     fullWidth
                     multiline
                     placeholder="¿What happen today?"
@@ -134,7 +137,7 @@ export const NoteView = () => {
             </Grid>
 
             {/* Galetia de imagenes */}
-            <ImageGallery images={ note.imageUrls } />
+            <ImageGallery sx={{ m: 2 }} images={ note.imageUrls } />
 
         </Grid>
     )

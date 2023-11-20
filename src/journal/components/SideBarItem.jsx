@@ -1,6 +1,5 @@
 import { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { TurnedInNot, Verified } from '@mui/icons-material'
 import { Checkbox, Grid, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import { setActiveNote } from '../../store/jounal'
 
@@ -31,14 +30,14 @@ export const SideBarItem = ({title = '', body, id, date, imageUrls = []}) => {
             : body
     })
 
-    const isActive = note && note.id === id; 
+    // const isActive = note && note.id === id; 
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
     return (
         <ListItem disablePadding>
             <ListItemButton onClick={ onclickNote }>
                 <ListItemIcon>
-                    <Checkbox {...label} color="secondary" />
+                    <Checkbox {...label} color="error" />
                 </ListItemIcon>
                 <Grid container>
                     <ListItemText primary={ newTitle } />

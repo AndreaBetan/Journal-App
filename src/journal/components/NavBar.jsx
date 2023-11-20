@@ -20,6 +20,7 @@ export const NavBar = ({ drawerWidth = 240 }) => {
                 width: { sm: `calc(100% - ${drawerWidth}px)` },
                 // Solo en pantallas ml el ancho sera igual al drawerWidth
                 ml: { sm: `${drawerWidth}px` }
+                
             }}
         >
             <Toolbar>
