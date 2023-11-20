@@ -31,17 +31,18 @@ Si los usuarios prefieren no utilizar Google para autenticarse, también pueden 
 
 ## Tecnologías utilizadas
 
+- JavaScript
 - React
 - Redux
 - Redux Toolkit
 - Firebase (Firestore)
 - Cloudinary
 
-## Capturas de pantalla
+## Imagenes de la App
 
-![Captura de pantalla 1](captura1.png)
-![Captura de pantalla 2](captura2.png)
-![Captura de pantalla 3](captura3.png)
+![Login](img/login.png)
+![New Note](img/new-note.png)
+![Note](img/note.png)
 
 ## Instalación
 
@@ -56,8 +57,4 @@ Si los usuarios prefieren no utilizar Google para autenticarse, también pueden 
 2. Configura las credenciales de Firebase en el archivo de configuración.
 3. Crea una cuenta en [Cloudinary](https://cloudinary.com/).
 4. Configura las credenciales de Cloudinary en el archivo de configuración.
-
-## Contribuciones
-
-¡Las contribuciones son bienvenidas! Si encuentras un problema o tienes una sugerencia, por favor, abre un problema o envía una solicitud de extracción.
 
